@@ -1,0 +1,41 @@
+
+    An Enigma machine is a famous encryption machine used by the Germans during WWII to transmit coded messages.
+It allows for billions and billions of ways to encode a message, making it incredibly difficult for other nations to crack German codes during the war, for a time the code seemed unbreakable. An Enigma machine is made up of several parts including a keyboard, a lamp board, rotors, and internal electronic circuitry.
+
+    The basic structure of the rotors in an Enigma machine are as follows:
+
+REFLECTOR        ROTOR 2         ROTOR 1
+
+P       A       C       A       S       A
+R       B       N       B       T       B
+Y       C       R       C       F       C
+C       D       B       D       J       D
+U       E       E       E       Z       E
+T       F       L       F       Q       F
+W       G       Q       G       Y       G
+A       H       G       H       N       H
+H       I       J       I       G       I
+G       J       D       J       U       J
+X       K       O       K       M       K
+M       L       X       L       A       L
+B       M       P       M       L       M
+O       N       F       N       R       N
+K       O       K       O       E       O
+J       P       A       P       W       P
+L       Q       H       Q       X       Q
+E       R       V       R       O       R
+N       S       Z       S       C       S
+I       T       U       T       D       T
+Q       U       Y       U       K       U
+D       V       T       V       B       V
+S       W       I       W       I       W
+Z       X       W       X       P       X
+F       Y       M       Y       H       Y
+V       Z       S       Z       V       Z
+
+
+    After the letter 'A' goes through the rotor I, it points to 'L'. The letter 'L' is now an input to rotor II, where it points to 'F'. After the letter goes through rotors II, I it then hits the reflector and undergoes another simple substitution. After coming out of the reflector, the letter is sent back through the rotors in the reverse direction (this means the inverse substitution is applied).
+
+   This is best depicted using a table :
+I -> II -> Reflector -> inv(I) -> inv(II)
+A -> L  -> F         -> M      -> L 

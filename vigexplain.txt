@@ -1,0 +1,41 @@
+    The Vigenere Cipher is a polyalphabetic substitution cipher.
+
+    The 'key' for a vigenere cipher is a key word. e.g. 'FORTIFICATION'.
+    The Vigenere Cipher uses the following tableau (the 'tabula recta') to encipher the plaintext:
+
+	A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+	B C D E F G H I J K L M N O P Q R S T U V W X Y Z A
+	C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
+	D E F G H I J K L M N O P Q R S T U V W X Y Z A B C
+	E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
+	F G H I J K L M N O P Q R S T U V W X Y Z A B C D E
+	G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
+	H I J K L M N O P Q R S T U V W X Y Z A B C D E F G
+	I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
+	J K L M N O P Q R S T U V W X Y Z A B C D E F G H I
+	K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
+	L M N O P Q R S T U V W X Y Z A B C D E F G H I J K
+	M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
+	N O P Q R S T U V W X Y Z A B C D E F G H I J K L M
+	O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
+	P Q R S T U V W X Y Z A B C D E F G H I J K L M N O
+	Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
+	R S T U V W X Y Z A B C D E F G H I J K L M N O P Q
+	S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
+	T U V W X Y Z A B C D E F G H I J K L M N O P Q R S
+	U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
+	V W X Y Z A B C D E F G H I J K L M N O P Q R S T U
+	W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
+	X Y Z A B C D E F G H I J K L M N O P Q R S T U V W
+	Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
+	Z A B C D E F G H I J K L M N O P Q R S T U V W X Y
+
+    To encipher a message, repeat the keyword above the plaintext:
+	FORTIFICATIONFORTIFICATIONFO
+	DEFENDTHEEASTWALLOFTHECASTLE
+
+    Now we take the letter we will be encoding, 'D', and find it on the first column on the tableau. Then, we move along the 'D' row of the tableau until we come to the column with the 'F' at the top 
+(The 'F' is the keyword letter for the first 'D'), the intersection is our ciphertext character, 'I'.So, the ciphertext for the above plaintext is:
+
+	ISWXVIBJEXIGGBOCEWKBJEVIGGQS
+
