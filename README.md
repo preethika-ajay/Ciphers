@@ -1,3 +1,3 @@
 # Cryptography
-  Encryption  ciphers - ceaser, vigenere, playfair, enigma, atbash   
+  Encryption<br/>ciphers - ceaser, vigenere, playfair, enigma, atbash   
  
