@@ -1,0 +1,5 @@
+The Atbash cipher is a particular type of monoalphabetic cipher formed by taking the alphabet and mapping it to its reverse, so that the first letter becomes the last letter, the second letter becomes the second to last letter, etc.
+
+The cipher is:    
+ Plain	ABCDEFGHIJKLMNOPQRSTUVWXYZ  
+ Cipher	ZYXWVUTSRQPONMLKJIHGFEDCBA

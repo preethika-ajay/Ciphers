@@ -1,0 +1,7 @@
+The Caesar cipher is one of the earliest known and simplest ciphers. It is a type of substitution cipher in which each letter in the plaintext is 'shifted' by a certain number of places down the alphabet.
+
+For example, with a shift of 1, A would be replaced by B, B would become C, and so on.
+Mathematical Description :      
+	 e(x)=(x+k)(mod 26)       Where k is the key (the shift) applied to each letter. 
+The decryption function is :    
+	 e(x)=(x-k)(mod 26)
