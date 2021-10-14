@@ -140,30 +140,12 @@ void enigma ::process_plaintext_enigma()
     ciphertext_enigma[strlen(plaintext_enigma)] = '\0';
 }
 
-//fn to print the ciphertext
-/*void enigma ::display_ciphertext_enigma()
-{
-    cout << "\nThe encrypted code is: " << ciphertext_enigma << endl;
-    cout << "\n\nEnter any key to know about the working of ENIGMA: ";
-    char ch;
-    cin >> ch;
-    enigma_display();
-}*/
-
 //fn to display plaintext and ciphertext of enigma
 void enigma::enigma_display()
 {
     system("cls");
     cout << "Plaintext:  " << plaintext_enigma << '\n';
     cout << "Ciphertext: " << ciphertext_enigma << "\n";
-    /*fstream fenig("enigexplain.txt", ios::in);
-    while (!fenig.eof())
-    {
-        char line[700];
-        fenig.getline(line, 700, '\n');
-        cout << line << endl;
-    }
-    fenig.close();*/
 } //end of void
 
 //CEASER CIPHER
@@ -225,13 +207,6 @@ void ceaser::display_ceaser()
     system("cls");
     cout << "Plaintext  : " << input_copy << '\n';
     cout << "Ciphertext : " << word << "\n\n";
-    /*cout << "    The Caesar cipher is one of the earliest known and simplest ciphers.";
-    cout << " It is a type of substitution cipher in which each letter in the plaintext is 'shifted' by a certain number of places down the alphabet.";
-    cout << " For example, with a shift of 1, A would be replaced by B, B would become C, and so on.\n\n";
-    cout << "    Mathematical Description :\n        e(x)=(x+k)(mod 26)\n        Where k is the key (the shift) applied to each letter. \n\n";
-    cout << "    The decryption function is :\n        e(x)=(x-k)(mod 26)\n\n";
-    cout << "    In this case, the key entered is " << key << ", the substitution will be as such:\n";
-    cout << "        ABCDEFGHIJKLMNOPQRSTUVWXYZ\n        ";*/
     cout<<"\nShift of the alphabet: \n";
     int i;
     for (i = 0; i < 26; i++)
@@ -286,10 +261,6 @@ void atbash::display_atbash()
     system("cls");
     cout << "Plaintext:  " << plaintext_atbash << '\n';
     cout << "Ciphertext: " << ciphertext_atbash << "\n";
-   /* cout << "\n    The Atbash cipher is a particular type of monoalphabetic cipher formed "
-            "by taking the alphabet and mapping it to its reverse, so that "
-            "the first letter becomes the last letter, the second letter becomes the second to last letter, etc.\n\n";
-    cout << "    The cipher is:\n        Plain	ABCDEFGHIJKLMNOPQRSTUVWXYZ\n        Cipher	ZYXWVUTSRQPONMLKJIHGFEDCBA\n";*/
 } //end of void
 
 //PLAYFAIR CIPHER - to know about working of cipher refer to readme
@@ -478,14 +449,7 @@ void playfair::display_playfair()
     system("cls");
     cout << "Plaintext:  " << plaintext_playfair << '\n';
     cout << "Ciphertext: " << ciphertext_playfair << "\n\n";
-    /*fstream fplay("playexplain.txt", ios::in);
-    while (!fplay.eof())
-    {
-        char line[700];
-        fplay.getline(line, 700, '\n');
-        cout << line << endl;
-    }
-    fplay.close();*/
+    
     cout << "      Grid: \n       ";
     int i;
     for (i = 0; i < 5; i++)
@@ -584,15 +548,6 @@ void vig::display_vig()
     system("cls");
     cout << "Plaintext: " << plaintext_vig;
     cout << "\nCiphertext:" << ciphertext_vig << endl;
-    /*vigmatrice();
-    fstream fvig("vigexplain.txt", ios::in);
-    while (!fvig.eof())
-    {
-        char line[700];
-        fvig.getline(line, 700, '\n');
-        cout << line << endl;
-    }
-    fvig.close();*/
 } //end of vig
 
 void menu()
