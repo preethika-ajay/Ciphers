@@ -3,7 +3,7 @@ Encryption is the process of encoding a message or information in such a way tha
 If you want to jump head-first and get started with Contributions, head over to
 `CONTRIBUTING.md` to get started!
 
-<i>PLEASE NOTE THAT ONLY LETTERS WILL BE ENCRYPTED. 
+<i>PLEASE NOTE THAT ONLY LETTERS WILL BE ENCRYPTED. </i>
  
  
  ## Tech Stack
