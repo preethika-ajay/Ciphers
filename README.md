@@ -7,11 +7,27 @@ If you want to jump head-first and get started with Contributions, head over to
  
  
  ## Tech Stack
- - c++
-- tools needed
+ - language: c++
+ - tools: mingw, codeblocks
  
  ## Getting Started
 Here's How you can get the program running in your machines :
+First, install mingw compiler for the mentioned website: https://sourceforge.net/projects/mingw/files/
+ and then add to path in environment variables
+ Now, run the following commands to run the code
+  windows-
 ```
-<Code / Shell Commands for Envirnoment Setup>
+g++ filename.cpp
+ a.exe
 ```
+ linux-
+```
+g++ filename.cpp
+ ./a.out
+```
+ 
+## About the project
+### Is this project beginner friendly?
+YES
+## Maintainer
+Maintainers : [Your github username] , [you email ID]
