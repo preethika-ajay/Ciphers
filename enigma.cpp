@@ -85,8 +85,8 @@ public:
     void init();
     void input_plaintext_enigma();
     void process_plaintext_enigma();
-    void display_ciphertext_enigma();
-    void enigma_info();
+    //void display_ciphertext_enigma();
+    void enigma_display();
 };
 
 //fn to initialize the left walls of the rotor and reflector - alphabet array obtained from file secretkey.txt
@@ -141,17 +141,17 @@ void enigma ::process_plaintext_enigma()
 }
 
 //fn to print the ciphertext
-void enigma ::display_ciphertext_enigma()
+/*void enigma ::display_ciphertext_enigma()
 {
     cout << "\nThe encrypted code is: " << ciphertext_enigma << endl;
     cout << "\n\nEnter any key to know about the working of ENIGMA: ";
     char ch;
     cin >> ch;
-    enigma_info();
-}
+    enigma_display();
+}*/
 
-//fn to obtain information about enigma stored in a file
-void enigma::enigma_info()
+//fn to display plaintext and ciphertext of enigma
+void enigma::enigma_display()
 {
     system("cls");
     cout << "Plaintext:  " << plaintext_enigma << '\n';
@@ -174,7 +174,7 @@ class ceaser
     char input_copy[50]; //copy of plaintext for reference
 public:
     void encrypt_ceaser();
-    void info_ceaser();
+    void display_ceaser();
 } c1;
 
 //fn that performs encryption acccording to the rules of ceaser cipher(to know working of cipher, refer to readme)
@@ -216,11 +216,11 @@ void ceaser::encrypt_ceaser()
     cout << "\n\nEnter any key to know about the working of CEASER'S SHIFT: ";
     char ch;
     cin >> ch;
-    info_ceaser();
+    display_ceaser();
 } //end of void encrypt_ceaser
 
 //fn that contains information about the ceaser cipher
-void ceaser::info_ceaser()
+void ceaser::display_ceaser()
 {
     system("cls");
     cout << "Plaintext  : " << input_copy << '\n';
@@ -232,6 +232,7 @@ void ceaser::info_ceaser()
     cout << "    The decryption function is :\n        e(x)=(x-k)(mod 26)\n\n";
     cout << "    In this case, the key entered is " << key << ", the substitution will be as such:\n";
     cout << "        ABCDEFGHIJKLMNOPQRSTUVWXYZ\n        ";*/
+    cout<<"\nShift of the alphabet: \n";
     int i;
     for (i = 0; i < 26; i++)
     {
@@ -252,7 +253,7 @@ class atbash
 
 public:
     void processatbash();
-    void doyouwanttoknowatbash();
+    void display_atbash();
 } blue; //end of class at bash
 
 //fn that performs encryption acccording to the rules of atbash cipher(to know working of cipher, refer to readme)
@@ -276,11 +277,11 @@ void atbash::processatbash()
     cout << "\n\nEnter any key to know about the working of the ATBASH CIPHER: ";
     char ch;
     cin >> ch;
-    doyouwanttoknowatbash();
+    display_atbash();
 } //end of process at bash
 
-//fn that prints the information about atbash cipher
-void atbash::doyouwanttoknowatbash()
+//fn that prints the plaintext and ciphertext of atbash
+void atbash::display_atbash()
 {
     system("cls");
     cout << "Plaintext:  " << plaintext_atbash << '\n';
@@ -307,7 +308,7 @@ public:
     void inputplay();
     void processplay();
     void outputplay();
-    void doyouwanttoknowplay();
+    void display_playfair();
 };
 
 //fn to input key and plaintext from user, and convert it to the prescribed format
@@ -468,11 +469,11 @@ void playfair ::outputplay()
     cout << "\n\nEnter any key to know about the working of the PLAYFAIR CIPHER";
     char ch;
     cin >> ch;
-    doyouwanttoknowplay();
+    display_playfair();
 }
 
 //fn to display the generated grid of the playfair cipher
-void playfair::doyouwanttoknowplay()
+void playfair::display_playfair()
 {
     system("cls");
     cout << "Plaintext:  " << plaintext_playfair << '\n';
@@ -507,7 +508,7 @@ class vig
 public:
     void vigprocess();
     void vigmatrice();
-    void doyouwanttovig();
+    void display_vig();
 } v;
 
 //fn to create the vigenere alphabet matrix
@@ -575,10 +576,10 @@ void vig::vigprocess()
     cout << "\n\nEnter any key to know about the working of VIGNERE CIPHER";
     char ch;
     cin >> ch;
-    doyouwanttovig();
+    display_vig();
 }
 
-void vig::doyouwanttovig()
+void vig::display_vig()
 {
     system("cls");
     cout << "Plaintext: " << plaintext_vig;
@@ -619,7 +620,8 @@ void menu()
             machine.init();
             machine.input_plaintext_enigma();
             machine.process_plaintext_enigma();
-            machine.display_ciphertext_enigma();
+            //machine.display_ciphertext_enigma();
+            machine.enigma_display();
             cout << "Enter any key to continue\n";
             char c1a;
             cin >> c1a;
