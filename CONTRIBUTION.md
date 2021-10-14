@@ -9,7 +9,7 @@ What is a menu driven program?
 When you run the code, a list of options are displayed and the user can chose what they want to do.
 
 How to run the program?
-1. Clone the program - First, open command prompt(cmd) and traverse to the directiory where you want save the file. now type ```git clone link-of-repo```
+1. Clone the program - First, open command prompt(cmd) and traverse to the directiory where you want save the file. now type ```git clone https://github.com/preethika-ajay/Cryptography```
 2. Open and run
 
 write steps to create pull request tan q 
