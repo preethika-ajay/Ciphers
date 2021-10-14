@@ -553,12 +553,7 @@ void vig::display_vig()
 void menu()
 {
     char choice;
-    cout << "\nEncryption is the process of encoding a message or information in such a way that"
-            " only authorized parties can access it and those who are not authorized cannot."
-            " Encryption does not itself prevent interference, but denies the intelligible content to "
-            "a would-be interceptor. In an encryption scheme, the intended information or message, referred"
-            " to as plaintext, is encrypted using an encryption algorithm a cipher,  generating ciphertext "
-            "that can be read only if decrypted.\n\n        PLEASE NOTE THAT ONLY LETTERS WILL BE ENCRYPTED.\n";
+    
     int flag = 0;
     while (!flag)
     {
