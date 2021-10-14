@@ -1,5 +1,5 @@
 # Contributing to <Project Name>
-Hello and welcome! We are so glad that you are interesting in contributing to Cryptography!
+Hello and welcome! We are so glad that you are interesting in contributing to Ciphers!
 We only have a couple of rules and we hope you enjoy the process :)
 ## Contributing Rules
 * Do not spam the repository
