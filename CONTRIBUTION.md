@@ -1,15 +1,22 @@
-Hello there!
-
-This is a menu driven program in C++ that contains multipe ciphers.
-
-What is a cipher?
-In cryptography, a cipher is an algorithm for performing encryption or decryption—a series of well-defined steps that can be followed as a procedure. What this means is that a cipher is essentially a way to encode normal text, so there needs to be a proccess to accomplish this - the algorithm. Each cipher follows a different algorithm and will be explained as required.
-
-What is a menu driven program? 
-When you run the code, a list of options are displayed and the user can chose what they want to do.
-
-How to run the program?
-1. Clone the program - First, open command prompt(cmd) and traverse to the directiory where you want save the file. now type ```git clone https://github.com/preethika-ajay/Cryptography```
-2. Open and run
-
-write steps to create pull request tan q 
+# Contributing to <Project Name>
+Hello and welcome! We are so glad that you are interesting in contributing to Cryptography!
+We only have a couple of rules and we hope you enjoy the process :)
+## Contributing Rules
+* Do not spam the repository
+* Do not copy the code from any source
+* Contribute to the repository in an ethical manner
+## Contributing Process<br>
+1. Fork the repository<br>
+2. Clone **your forked repository** to your computer<br>
+3. Head to the issues tab and look for an issue that you like. Issues marked "Good
+First Issue" or "Hacktoberfest" are great to start with!<br>
+4. Once you have decided what issue to work on, give it a shot!<br>
+5. Once done, push the code to your forked repository.<br>
+6. Head to the Pull Requests tab and click on "Create New Pull Request"<br>
+7. On the left of the arrow should be this repo and on the right should be yours.<br>
+8. Add a small description to the Pull Request describing what you've done.<br>
+9. Mention what Issue you have worked on. If the issue number is #3, you can mention
+"Closes #3" in the Pull Request description.<br>
+10. Submit Pull Request<br>
+It's that easy! We hope you enjoy contributing to our repository. Don't hesitate to
+contact any of the maintainers or ACM team about any problems!
