@@ -291,14 +291,14 @@ void atbash::doyouwanttoknowatbash()
     cout << "    The cipher is:\n        Plain	ABCDEFGHIJKLMNOPQRSTUVWXYZ\n        Cipher	ZYXWVUTSRQPONMLKJIHGFEDCBA\n";
 } //end of void
 
-//PLAYFAIR CIPHER
+//PLAYFAIR CIPHER - to know about working of cipher refer to readme
 class playfair
 {
-    char grid[5][5];
-    char key[200];
+    char grid[5][5];//playfair cipher's 5X5 grid 
+    char key[200];//to contain the key in the required format for encryption
     char inp_key[200];
-    char inp_text[200];
-    char outp[200];
+    char plaintext_playfair[200];//plain text as inputted by user
+    char ciphertext_playfair[200];
     void generate_key();
     void generate_grid();
 
@@ -310,45 +310,51 @@ public:
     void doyouwanttoknowplay();
 };
 
+//fn to input key and plaintext from user, and convert it to the prescribed format
 void playfair ::inputplay()
 {
     cout << "Enter key of maximum 200 characters: ";
     fflush(stdin);
     gets(inp_key);
+
     cout << "\nEnter message of maximum 200 characters: ";
     fflush(stdin);
-    gets(inp_text);
+    gets(plaintext_playfair);
+
     // Convert all letters to lowercase
     int i;
     for (i = 0; i < strlen(inp_key); i++)
         inp_key[i] = tolower(inp_key[i]);
-    //Remove all spaces and numbers from inp_text, insert 'x' between repeated letters
+
+    //Remove all spaces and numbers from plaintext_playfair, insert 'x' between repeated letters
     char temp[200];
     int k = 0;
-    for (i = 0; i < strlen(inp_text); i++)
+    for (i = 0; i < strlen(plaintext_playfair); i++)
     {
-        if (inp_text[i] < 'a' || inp_text[i] > 'z')
+        if (plaintext_playfair[i] < 'a' || plaintext_playfair[i] > 'z')
             continue;
         else
         {
-            temp[k++] = inp_text[i];
-            if (inp_text[i] == inp_text[i + 1])
+            temp[k++] = plaintext_playfair[i];
+            if (plaintext_playfair[i] == plaintext_playfair[i + 1])
                 temp[k++] = 'x';
         }
     }
     temp[k] = '\0';
-    strcpy(inp_text, temp);
-    // Make number of letters in inp_text even
-    int l = strlen(inp_text);
+    strcpy(plaintext_playfair, temp);
+
+    // Make number of letters in plaintext_playfair even
+    int l = strlen(plaintext_playfair);
     if (l % 2 == 1)
     {
-        inp_text[l++] = 'x';
-        inp_text[l] = '\0';
+        plaintext_playfair[l++] = 'x';
+        plaintext_playfair[l] = '\0';
     }
     generate_key();
     generate_grid();
 }
 
+//fn to transform the key into the required format
 void playfair ::generate_key()
 {
     int i, k = 0;
@@ -367,18 +373,23 @@ void playfair ::generate_key()
     key[k] = '\0';
 }
 
+//fn to generate the 5x5 grid for the playfair cipher
 void playfair ::generate_grid()
 {
     int i, k = 0; //k iterates through the alphabet
+
+    //to input key into grid
     for (i = 0; i < strlen(key); i++)
         grid[i / 5][i % 5] = key[i];
+
+    //to find the alphabets not part of the key
     char temp[26];
     int o = 0; //o iterates through temp
     for (i = 0; i < 26; i++)
     {
         int j, repeat = 0;
         for (j = 0; j < strlen(key); j++)
-            if (alpha2[k] == key[j])
+            if (alpha2[k] == key[j])//alpha2 is the alphabet in lower case - preprocessor declared at the head of the program
                 repeat++;
         if (repeat || alpha2[k] == 'j')
         {
@@ -389,18 +400,22 @@ void playfair ::generate_grid()
     }
     temp[o] = '\0';
     o = 0;
+
+    //to fill the rest of the grid with the remainder alphabets
     for (i = strlen(key); i < 26; i++)
     {
         grid[i / 5][i % 5] = temp[o++];
     }
 }
 
+//fn to generate the encrypted text for playfair cipher
 void playfair ::processplay()
 {
     int i;
-    for (i = 0; i < strlen(inp_text); i += 2)
+    for (i = 0; i < strlen(plaintext_playfair); i += 2)
     {
-        char a = inp_text[i], b = inp_text[i + 1];
+        char a = plaintext_playfair[i], b = plaintext_playfair[i + 1];
+
         //Find indices of a and b
         int j, ai, aj, bi, bj;
         for (j = 0; j < 5; j++)
@@ -420,40 +435,48 @@ void playfair ::processplay()
                 }
             }
         }
-        //Process each digram and write into outp
+        //Process each digram and write into ciphertext_playfair
+
+        //Case 1 : Same row
         if (ai == bi)
-        { //Case 1 : Same row
-            outp[i] = grid[ai][(aj + 1) % 5];
-            outp[i + 1] = grid[bi][(bj + 1) % 5];
+        { 
+            ciphertext_playfair[i] = grid[ai][(aj + 1) % 5];
+            ciphertext_playfair[i + 1] = grid[bi][(bj + 1) % 5];
         }
+
+        //Case 2 : Same column
         else if (aj == bj)
-        { //Case 2 : Same column
-            outp[i] = grid[(ai + 1) % 5][aj];
-            outp[i + 1] = grid[(bi + 1) % 5][bj];
+        { 
+            ciphertext_playfair[i] = grid[(ai + 1) % 5][aj];
+            ciphertext_playfair[i + 1] = grid[(bi + 1) % 5][bj];
         }
+
+        //Case 3 : rectangle
         else
-        { //Case 3 : rectangle
-            outp[i] = grid[ai][bj];
-            outp[i + 1] = grid[bi][aj];
+        { 
+            ciphertext_playfair[i] = grid[ai][bj];
+            ciphertext_playfair[i + 1] = grid[bi][aj];
         }
     }
-    outp[strlen(inp_text)] = '\0';
+    ciphertext_playfair[strlen(plaintext_playfair)] = '\0';
 }
 
+//fn to print the ciphertext for playfair cipher
 void playfair ::outputplay()
 {
-    cout << "\nThe encrypted message is: " << outp << '\n';
+    cout << "\nThe encrypted message is: " << ciphertext_playfair << '\n';
     cout << "\n\nEnter any key to know about the working of the PLAYFAIR CIPHER";
     char ch;
     cin >> ch;
     doyouwanttoknowplay();
 }
 
+//fn to display the generated grid of the playfair cipher
 void playfair::doyouwanttoknowplay()
 {
     system("cls");
-    cout << "Plaintext:  " << inp_text << '\n';
-    cout << "Ciphertext: " << outp << "\n\n";
+    cout << "Plaintext:  " << plaintext_playfair << '\n';
+    cout << "Ciphertext: " << ciphertext_playfair << "\n\n";
     fstream fplay("playexplain.txt", ios::in);
     while (!fplay.eof())
     {
