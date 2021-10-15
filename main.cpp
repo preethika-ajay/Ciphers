@@ -178,9 +178,14 @@ void ceaser::encrypt_ceaser()
         ch = word[i];
         if (ch >= 'a' && ch <= 'z')
         {
-            ch = ch + key;
-            if (ch > 'z')
-                ch = ch - 'z' + 'a' - 1;
+            if (ch > ('z'- key))
+            {  
+                ch = ch - 'z' + 'a' - 1 + key;
+            }
+            else
+            {
+                ch = ch + key;
+            }
             word[i] = ch;
         }
         //encrypt for uppercase letter
