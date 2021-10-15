@@ -30,4 +30,7 @@ g++ filename.cpp
 ### Is this project beginner friendly?
 YES
 ## Maintainer
-Maintainers : [Your github username] , [you email ID]
+Maintainers : jagriti-bhatia, jagriti.bhatia11@gmail.com  
+              preethika-ajay, preethikaajay@gmail.com  
+              shryays , shryays25@gmail.com  
+              karunakc, karunakkc@gmail.com  
