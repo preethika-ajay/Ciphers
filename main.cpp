@@ -384,7 +384,7 @@ void playfair ::processplay()
     int i;
     for (i = 0; i < strlen(plaintext_playfair); i += 2)
     {
-        char a = plaintext_playfair[i], b = plaintext_playfair[i + 1];
+        char a = plaintext_playfair[i], b = plaintext_playfair[i+1];
 
         //Find indices of a and b
         int j, ai, aj, bi, bj;
@@ -393,12 +393,12 @@ void playfair ::processplay()
             int k;
             for (k = 0; k < 5; k++)
             {
-                if (grid[k][j] == a)
+                if (grid[j][k] == a)
                 {
                     ai = j;
                     aj = k;
                 }
-                else if (grid[k][j] == b)
+                else if (grid[j][k] == b)
                 {
                     bi = j;
                     bj = k;
@@ -411,21 +411,21 @@ void playfair ::processplay()
         if (ai == bi)
         { 
             ciphertext_playfair[i] = grid[ai][(aj + 1) % 5];
-            ciphertext_playfair[i + 1] = grid[bi][(bj + 1) % 5];
+            ciphertext_playfair[i+1] = grid[bi][(bj + 1) % 5];
         }
 
         //Case 2 : Same column
         else if (aj == bj)
         { 
             ciphertext_playfair[i] = grid[(ai + 1) % 5][aj];
-            ciphertext_playfair[i + 1] = grid[(bi + 1) % 5][bj];
+            ciphertext_playfair[i+1] = grid[(bi + 1) % 5][bj];
         }
 
         //Case 3 : rectangle
         else
         { 
             ciphertext_playfair[i] = grid[ai][bj];
-            ciphertext_playfair[i + 1] = grid[bi][aj];
+            ciphertext_playfair[i+1] = grid[bi][aj];
         }
     }
     ciphertext_playfair[strlen(plaintext_playfair)] = '\0';
@@ -435,7 +435,7 @@ void playfair ::processplay()
 void playfair ::outputplay()
 {
     cout << "\nThe encrypted message is: " << ciphertext_playfair << '\n';
-    cout << "\n\nEnter any key to know about the working of the PLAYFAIR CIPHER";
+    cout << "\n\nEnter any key to know about the working of the PLAYFAIR CIPHER : ";
     char ch;
     cin >> ch;
     display_playfair();
