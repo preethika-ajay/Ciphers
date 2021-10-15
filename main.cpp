@@ -168,7 +168,7 @@ void ceaser::encrypt_ceaser()
     strcpy(input_copy, word);
     cout << "Enter shift of each letter (a number) : " << endl;
     cin >> key;
-//since cin is a streaming function, failed state causes infinite loop. The following code brings back proper state of cin and removes the invalid date.
+//since cin is a streaming function, failed state causes infinite loop. The following code brings back proper state of cin and removes the invalid data.
     while(cin.fail())
     {
         cout << "Invalid input. Please enter an integer: ";
