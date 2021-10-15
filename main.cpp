@@ -151,7 +151,7 @@ void enigma::enigma_display()
 //CEASER CIPHER
 class ceaser
 {
-    int key;             //shift of alphabet(user input)
+    int key=0;             //shift of alphabet(user input)
     char word[50];       //user input of plaintext
     char input_copy[50]; //copy of plaintext for reference
 public:
@@ -166,8 +166,19 @@ void ceaser::encrypt_ceaser()
     fflush(stdin);
     gets(word);
     strcpy(input_copy, word);
-    cout << "Enter shift of each letter (a number) : " << endl;
-    cin >> key;
+	bool bad = false;
+
+	do{
+		cout << "Enter shift of each letter (a number) : " << endl;
+		cin >> key;
+
+		bad = cin.fail();
+		if (bad)
+			cout << "Check your input (enter a number)" << endl;
+		cin.clear();
+		cin.ignore(10, '\n');
+	} while(bad);
+
     key = key % 26;
     int i, j, l;
     l = strlen(word);
