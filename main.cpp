@@ -168,29 +168,22 @@ void ceaser::encrypt_ceaser()
     strcpy(input_copy, word);
     cout << "Enter shift of each letter (a number) : " << endl;
     cin >> key;
-    key = key % 26;
     int i, j, l;
     l = strlen(word);
     cout << "\nThe encrypted message is: ";
-    for (int i = 0; word[i] != '\0'; ++i)
+    for (int i = 0; i<l; ++i)
     {
         char ch;
         ch = word[i];
         if (ch >= 'a' && ch <= 'z')
         {
-            ch = ch + key;
-            if (ch > 'z')
-                ch = ch - 'z' + 'a' - 1;
+            ch = (ch + key - 97)%26+97;
             word[i] = ch;
         }
         //encrypt for uppercase letter
         else if (ch >= 'A' && ch <= 'Z')
         {
-            ch = ch + key;
-            if (ch > 'Z')
-            {
-                ch = ch - 'Z' + 'A' - 1;
-            }
+            ch = (ch + key - 65)%26+65;
             word[i] = ch;
         }
         cout << word[i];
