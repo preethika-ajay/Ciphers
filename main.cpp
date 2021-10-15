@@ -243,6 +243,8 @@ void atbash::processatbash()
     {
         if ('a' <= plaintext_atbash[i] && plaintext_atbash[i] <= 'z')
             ciphertext_atbash[i] = 'a' + 'z' - plaintext_atbash[i];
+        else if ('A' <= plaintext_atbash[i] && plaintext_atbash[i] <= 'Z')
+            ciphertext_atbash[i] = 'a' + 'z' - plaintext_atbash[i] - 32;
         else
             ciphertext_atbash[i] = plaintext_atbash[i];
         cout << ciphertext_atbash[i];
