@@ -241,8 +241,8 @@ void atbash::processatbash()
     cout << "\nThe encrypted message is: ";
     for (i = 0; i < strlen(plaintext_atbash); i++)
     {
-        if ('a' <= plaintext_atbash[i] && plaintext_atbash[i] <= 'z')
-            ciphertext_atbash[i] = 'a' + 'z' - plaintext_atbash[i];
+        if ('A' <= plaintext_atbash[i] && plaintext_atbash[i] <= 'z')
+            ciphertext_atbash[i] = 'A' + 'z' - plaintext_atbash[i];
         else
             ciphertext_atbash[i] = plaintext_atbash[i];
         cout << ciphertext_atbash[i];
