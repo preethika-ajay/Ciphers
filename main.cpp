@@ -393,12 +393,12 @@ void playfair ::processplay()
             int k;
             for (k = 0; k < 5; k++)
             {
-                if (grid[k][j] == a)
+                if (grid[j][k] == a)
                 {
                     ai = j;
                     aj = k;
                 }
-                else if (grid[k][j] == b)
+                else if (grid[j][k] == b)
                 {
                     bi = j;
                     bj = k;
