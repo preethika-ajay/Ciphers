@@ -167,7 +167,21 @@ void ceaser::encrypt_ceaser()
     gets(word);
     strcpy(input_copy, word);
     cout << "Enter shift of each letter (a number) : " << endl;
-    cin >> key;
+    while (true)
+    {
+        cin >> key;
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore();
+            cout << "Invalid! :(" << endl;
+            cout << "Enter another shift: " << endl;
+        }
+        else
+        {
+            break;
+        }
+    }
     key = key % 26;
     int i, j, l;
     l = strlen(word);
