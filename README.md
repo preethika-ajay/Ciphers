@@ -30,7 +30,8 @@ g++ filename.cpp
 ### Is this project beginner friendly?
 YES
 ## Maintainer
-Maintainers : jagriti-bhatia, jagriti.bhatia11@gmail.com  
+Maintainers :   
+jagriti-bhatia, jagriti.bhatia11@gmail.com  
               preethika-ajay, preethikaajay@gmail.com  
               shryays , shryays25@gmail.com  
               karunakc, karunakkc@gmail.com  
