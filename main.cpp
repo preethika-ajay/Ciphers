@@ -158,6 +158,7 @@ class ceaser
     char input_copy[50]; //copy of plaintext for reference
 public:
     void encrypt_ceaser();
+    void decrypt_ceaser();
     void display_ceaser();
 } c1;
 
@@ -202,6 +203,48 @@ void ceaser::encrypt_ceaser()
     cin >> ch;
     display_ceaser();
 } //end of void encrypt_ceaser
+
+//fn that performs encryption acccording to the rules of ceaser cipher(to know working of cipher, refer to readme)
+void ceaser::decrypt_ceaser()
+{
+    cout << "Enter your encrypted message:" << endl;
+    fflush(stdin);
+    cin.getline(word, 50);
+    strcpy(input_copy, word);
+    cout << "Enter shift of each letter (a number) : " << endl;
+    cin >> key;
+    key = key % 26;
+    int i, j, l;
+    l = strlen(word);
+    cout << "\nThe decrypted message is: ";
+    for (int i = 0; input_copy[i] != '\0'; ++i)
+    {
+        char ch;
+        ch = input_copy[i];
+        if (ch >= 'a' && ch <= 'z')
+        {
+            ch = ch - key;
+            if (ch < 'a')
+                ch = ch - 'a' + 'z' + 1;
+            input_copy[i] = ch;
+        }
+        //encrypt for uppercase letter
+        else if (ch >= 'A' && ch <= 'Z')
+        {
+            ch = ch - key;
+            if (ch < 'A')
+            {
+                ch = ch - 'A' + 'Z' + 1;
+            }
+            input_copy[i] = ch;
+        }
+        cout << input_copy[i];
+    }
+    cout << "\n\nEnter any key to know about the working of CEASER'S SHIFT: ";
+    char ch;
+    cin >> ch;
+    display_ceaser();
+} //end of void decrypt_ceaser
 
 //fn that contains information about the ceaser cipher
 void ceaser::display_ceaser()
@@ -586,6 +629,7 @@ void menu()
             cout << "Enter any key to continue\n";
             char c1a;
             cin >> c1a;
+            c1.decrypt_ceaser();
             system("cls");
         }
         break;
