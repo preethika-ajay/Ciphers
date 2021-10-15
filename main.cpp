@@ -33,6 +33,7 @@ int reflector::reflect(int a)
     for (i = 0; i < 26; i++)
         if (wallleft[i] == tofind)
             return i;
+    return i;
 }
 
 //class rotor of enigma cipher - ref to readme to know abouthe working of our enigma cipher
@@ -62,10 +63,11 @@ int rotor::look(int a, int bias)
         for (i = 0; i < 26; i++)
             if (left[i] == tofind)
                 return i;
+        return i;
     }
 
     //bias 1 indicates it is a inverter
-    else if (bias == 1)
+    else
     {
         char tofind = left[a];
         int s = tofind;
@@ -108,7 +110,7 @@ void enigma ::input_plaintext_enigma()
 {
     cout << "Kindly enter message of a maximum of 200 characters : \n";
     fflush(stdin);
-    gets(plaintext_enigma);
+    cin.getline(plaintext_enigma, 200);
     int i;
     for (i = 0; i < strlen(plaintext_enigma); i++)
         plaintext_enigma[i] = toupper(plaintext_enigma[i]);
@@ -164,7 +166,7 @@ void ceaser::encrypt_ceaser()
 {
     cout << "Enter your message:" << endl;
     fflush(stdin);
-    gets(word);
+    cin.getline(word, 50);
     strcpy(input_copy, word);
     cout << "Enter shift of each letter (a number) : " << endl;
     cin >> key;
@@ -236,7 +238,7 @@ void atbash::processatbash()
 {
     cout << "Enter your message:\n";
     fflush(stdin);
-    gets(plaintext_atbash);
+    cin.getline(plaintext_atbash, 50);
     int i;
     cout << "\nThe encrypted message is: ";
     for (i = 0; i < strlen(plaintext_atbash); i++)
@@ -287,11 +289,11 @@ void playfair ::inputplay()
 {
     cout << "Enter key of maximum 200 characters: ";
     fflush(stdin);
-    gets(inp_key);
+    cin.getline(inp_key, 200);
 
     cout << "\nEnter message of maximum 200 characters: ";
     fflush(stdin);
-    gets(plaintext_playfair);
+    cin.getline(plaintext_playfair, 200);
 
     // Convert all letters to lowercase
     int i;
@@ -499,12 +501,12 @@ void vig::vigprocess()
     vigmatrice();
     cout << "Enter a message:\n";
     fflush(stdin);
-    gets(ciphertext_vig);
+    cin.getline(ciphertext_vig, 50);
     strcpy(plaintext_vig, ciphertext_vig);
 
     cout << "Enter key:\n";
     fflush(stdin);
-    gets(key);
+    cin.getline(key, 25);
     char tempkey[30];
     strcpy(tempkey, key);
 
