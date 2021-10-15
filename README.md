@@ -33,5 +33,5 @@ YES
 Maintainers :   
 jagriti-bhatia, jagriti.bhatia11@gmail.com  
               preethika-ajay, preethikaajay@gmail.com  
-              shryays , shryays25@gmail.com  
+              shriyays , shriyays25@gmail.com  
               karunakc, karunakkc@gmail.com  
