@@ -91,18 +91,42 @@ public:
     void enigma_display();
 };
 
+void rand_left_wall(char temp[27])
+{
+    temp[0] = 65 + (rand() % 26);
+    for(int i = 1; i < 26; i++)
+    {
+        int flag = 0;
+        while(flag == 0)
+        {
+            flag = 1;
+            temp[i] = 65 + (rand() % 26);
+            for(int j = 0; j < i; j++)
+            {
+                if(temp[j] == temp[i]){flag = 0; break;}
+            }
+        } 
+    }
+    temp[26] = '\0';
+}
+
+char tempR1[27];
+char tempR2[27];
+char tempR[27];
+
 //fn to initialize the left walls of the rotor and reflector - alphabet array obtained from file secretkey.txt
 void enigma ::init()
 {
-    fstream fin("secretkey.txt", ios::in);
+    //fstream fin("secretkey.txt", ios::in);
     char temp[27];
-    fin.getline(temp, 27, '\n');
-    R1.input_rotor(temp);
-    fin.getline(temp, 27, '\n');
-    R2.input_rotor(temp);
-    fin.getline(temp, 27, '\n');
-    R.input_reflector(temp);
-    fin.close();
+
+    // fin.getline(temp, 27, '\n');
+    R1.input_rotor(tempR1);
+    // fin.getline(temp, 27, '\n');
+    R2.input_rotor(tempR2);
+    // fin.getline(temp, 27, '\n');
+    R.input_reflector(tempR);
+    //fin.close();
 }
 
 //fn to input plaintext form user and convert to upper case for ease of encryption
@@ -598,6 +622,10 @@ void vig::display_vig()
 void menu()
 {
     char choice;
+    
+    rand_left_wall(tempR1);
+    rand_left_wall(tempR2);
+    rand_left_wall(tempR);
     
     int flag = 0;
     while (!flag)
