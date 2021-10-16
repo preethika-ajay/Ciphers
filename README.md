@@ -38,5 +38,5 @@ YES
 Maintainers :   
 - [Jagriti Bhatia](https://github.com/jagriti-bhatia) [(Mail)](jagriti.bhatia11@gmail.com)  
 - [Preethika Ajay](https://github.com/preethika-ajay) [(Mail)](preethikaajay@gmail.com)  
-- [shriyays](https://github.com/shriyays) [(Mail)](shriyays25@gmail.com)  
-- [Karuna KC](https://github.com/karunakc) [(Mail)](karunakkc@gmail.com)
+- [Shriya YS](https://github.com/shriyays) [(Mail)](shriyays25@gmail.com)  
+- [Karuna K](https://github.com/karunakc) [(Mail)](karunakkc@gmail.com)
