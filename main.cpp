@@ -540,6 +540,7 @@ class vig
 
 public:
     void vigprocess();
+    void decrypt_vig();
     void vigmatrice();
     void display_vig();
 } v;
@@ -612,6 +613,53 @@ void vig::vigprocess()
     display_vig();
 }
 
+void vig::decrypt_vig()
+{
+    vigmatrice();
+    cout << "Enter a message:\n";
+    fflush(stdin);
+    cin.getline(ciphertext_vig, 50);
+    strcpy(plaintext_vig, ciphertext_vig);
+
+    cout << "Enter key:\n";
+    fflush(stdin);
+    cin.getline(key, 25);
+    char tempkey[30];
+    strcpy(tempkey, key);
+
+    cout << "\nThe encrypted message is: ";
+    int i, o = 0;
+
+    //loop to make all alphabets in input to upper case for ease of encryption
+    for (i = 0; i < strlen(ciphertext_vig); i++)
+        ciphertext_vig[i] = toupper(ciphertext_vig[i]);
+
+    //loop to convert all characters in key to upper case and validate that the key has only alphabets
+    for (i = 0; i < strlen(key); i++)
+    {
+        key[i] = toupper(key[i]);
+        if (key[i] < 'A' || key[i] > 'Z')
+            continue;
+        tempkey[o++] = key[i];
+    }
+    tempkey[o] = '\0';
+    strcpy(key, tempkey);
+
+    int l = strlen(key);
+    for (i = 0; i < strlen(ciphertext_vig); i++)
+    {
+        if (ciphertext_vig[i] >= 'A' && ciphertext_vig[i] <= 'Z')
+        {
+            ciphertext_vig[i] = (((ciphertext_vig[i] - key[i%l]) + 26) % 26) + 'A';
+        }
+        cout << ciphertext_vig[i];
+    }
+    cout << "\n\nEnter any key to know about the working of VIGNERE CIPHER";
+    char ch;
+    cin >> ch;
+    display_vig();
+}
+
 void vig::display_vig()
 {
     system("cls");
@@ -626,7 +674,7 @@ void menu()
     rand_left_wall(tempR1);
     rand_left_wall(tempR2);
     rand_left_wall(tempR);
-    
+
     int flag = 0;
     while (!flag)
     {
@@ -675,6 +723,9 @@ void menu()
             v.vigprocess();
             cout << "Enter any key to continue\n";
             char c1a;
+            cin >> c1a;
+            v.decrypt_vig();
+            cout << "Enter any key to continue\n";
             cin >> c1a;
             system("cls");
         } //end of switch
