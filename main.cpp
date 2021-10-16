@@ -269,7 +269,9 @@ class atbash
 
 public:
     void processatbash();
+    void decrypt_atbash();
     void display_atbash();
+    void display_decrypt_atbash();
 } blue; //end of class at bash
 
 //fn that performs encryption acccording to the rules of atbash cipher(to know working of cipher, refer to readme)
@@ -296,6 +298,29 @@ void atbash::processatbash()
     display_atbash();
 } //end of process at bash
 
+void atbash::decrypt_atbash()
+{
+    cout << "Enter the encrypted message:\n";
+    fflush(stdin);
+    gets(plaintext_atbash);
+    int i;
+    cout << "\nThe decrypted message is: ";
+    for (i = 0; i < strlen(plaintext_atbash); i++)
+    {
+        if ('a' <= plaintext_atbash[i] && plaintext_atbash[i] <= 'z')
+            ciphertext_atbash[i] = 'a' + 'z' - plaintext_atbash[i];
+        else if ('A' <= plaintext_atbash[i] && plaintext_atbash[i] <= 'Z')
+            ciphertext_atbash[i] = 'a' + 'z' - plaintext_atbash[i] - 32;
+        else
+            ciphertext_atbash[i] = plaintext_atbash[i];
+        cout << ciphertext_atbash[i];
+    }
+    cout << "\n\nEnter any key to know about the working of the ATBASH CIPHER: ";
+    char ch;
+    cin >> ch;
+    display_decrypt_atbash();
+}
+
 //fn that prints the plaintext and ciphertext of atbash
 void atbash::display_atbash()
 {
@@ -303,6 +328,13 @@ void atbash::display_atbash()
     cout << "Plaintext:  " << plaintext_atbash << '\n';
     cout << "Ciphertext: " << ciphertext_atbash << "\n";
 } //end of void
+
+void atbash::display_decrypt_atbash()
+{
+    system("cls");
+    cout << "Plaintext:  " << plaintext_atbash << '\n';
+    cout << "Decrypted text: " << ciphertext_atbash << "\n";
+}
 
 //PLAYFAIR CIPHER - to know about working of cipher refer to readme
 class playfair
@@ -691,6 +723,34 @@ void menu()
             char c1a;
             cin >> c1a;
             system("cls");
+            char choice1;
+            cout << "\nHere are the functions you can perform with the chosen encryption method:\n"
+                "1. ENCRYPT\n2. DECRYPT\n";
+            cout << "\nSelect the function you would like to perform\n";
+            cin >> choice1;
+            switch (choice1)
+            {
+                case '1':
+                {   
+                    blue.processatbash();
+                    cout << "Enter any key to continue\n";
+                    char c1a;
+                    cin >> c1a;
+                    system("cls");
+                }
+                break;
+                case '2':
+                {
+                    blue.decrypt_atbash();
+                    cout << "Enter any key to continue\n";
+                    char c1a;
+                    cin >> c1a;
+                    system("cls");
+                }
+                break;
+                default:
+                    cout << "Invalid choice. Try again.";
+            }
         }
         break;
         case '4':
