@@ -273,6 +273,7 @@ class atbash
 public:
     void processatbash();
     void display_atbash();
+    void decrypt_atbash();
 } blue; //end of class at bash
 
 //fn that performs encryption acccording to the rules of atbash cipher(to know working of cipher, refer to readme)
@@ -306,6 +307,31 @@ void atbash::display_atbash()
     cout << "Plaintext:  " << plaintext_atbash << '\n';
     cout << "Ciphertext: " << ciphertext_atbash << "\n";
 } //end of void
+
+void atbash::decrypt_atbash()
+{
+    cout << "Enter your message:\n";
+    fflush(stdin);
+    gets(ciphertext_atbash);
+    int i;
+    cout << "\nThe decrypted message is: ";
+    for (i = 0; i < strlen(ciphertext_atbash); i++)
+    {
+        if ('a' <= ciphertext_atbash[i] && ciphertext_atbash[i] <= 'z')
+            plaintext_atbash[i] = 'a' + 'z' - ciphertext_atbash[i];
+        else if ('A' <= ciphertext_atbash[i] && ciphertext_atbash[i] <= 'Z')
+            plaintext_atbash[i] = 'a' + 'z' - ciphertext_atbash[i] - 32;
+        else
+            plaintext_atbash[i] = ciphertext_atbash[i];
+        cout << plaintext_atbash[i];
+    }
+    cout<<plaintext_atbash;
+    cout << "\n\nEnter any key to know about the working of the ATBASH CIPHER: ";
+    char ch;
+    cin >> ch;
+    
+    
+}
 
 //PLAYFAIR CIPHER - to know about working of cipher refer to readme
 class playfair
@@ -699,7 +725,17 @@ void menu()
         break;
         case '3':
         {
-            blue.processatbash();
+            cout << "1.ENCRYPTION \n2.DECRYPTION \n";
+            cout<<"Select any one\n";
+            fflush(stdout);
+            cin >> choice2;
+            switch(choice2)
+            {
+                case '1':blue.processatbash();
+                        break;
+                case '2':blue.decrypt_atbash();
+                        break;
+            }
             cout << "Enter any key to continue\n";
             char c1a;
             cin >> c1a;
