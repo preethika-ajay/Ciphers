@@ -229,6 +229,7 @@ class atbash
 public:
     void processatbash();
     void display_atbash();
+    void decrypt_atbash();
 } blue; //end of class at bash
 
 //fn that performs encryption acccording to the rules of atbash cipher(to know working of cipher, refer to readme)
@@ -261,7 +262,33 @@ void atbash::display_atbash()
     system("cls");
     cout << "Plaintext:  " << plaintext_atbash << '\n';
     cout << "Ciphertext: " << ciphertext_atbash << "\n";
-} //end of void
+    cout << "Do you wish to decrypt text? (Press 1 for yes) ";
+    char ch;
+    cin>>ch;
+    if (ch=='1')
+        decrypt_atbash();
+} 
+
+void atbash::decrypt_atbash()
+{
+    cout << "Enter the message to be decrypted:\n";
+    fflush(stdin);
+    gets(ciphertext_atbash);
+    int i;
+    cout << "\nThe decrypted message is: ";
+    for (i = 0; i < strlen(ciphertext_atbash); i++)
+    {
+        if ('a' <= ciphertext_atbash[i] && ciphertext_atbash[i] <= 'z')
+            plaintext_atbash[i] = 'a' + 'z' - ciphertext_atbash[i];
+        else if ('A' <= ciphertext_atbash[i] && ciphertext_atbash[i] <= 'Z')
+            plaintext_atbash[i] = 'a' + 'z' - ciphertext_atbash[i] - 32;
+        else
+            plaintext_atbash[i] = ciphertext_atbash[i];
+        cout << plaintext_atbash[i];
+    }
+    cout<<"\n";
+}
+    //end of void
 
 //PLAYFAIR CIPHER - to know about working of cipher refer to readme
 class playfair
