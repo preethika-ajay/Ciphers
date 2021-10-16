@@ -473,6 +473,7 @@ public:
     void vigprocess();
     void vigmatrice();
     void display_vig();
+    void decrypt_vig();
 } v;
 
 //fn to create the vigenere alphabet matrix
@@ -537,7 +538,7 @@ void vig::vigprocess()
         }
         cout << ciphertext_vig[i];
     }
-    cout << "\n\nEnter any key to know about the working of VIGNERE CIPHER";
+    cout << "\n\nEnter any key to know about the working of VIGNERE CIPHER ";
     char ch;
     cin >> ch;
     display_vig();
@@ -548,7 +549,65 @@ void vig::display_vig()
     system("cls");
     cout << "Plaintext: " << plaintext_vig;
     cout << "\nCiphertext:" << ciphertext_vig << endl;
-} //end of vig
+    cout << "\nDo you wish to decrypt text? "<<endl;
+    decrypt_vig();
+} 
+
+void vig::decrypt_vig()
+{
+    vigmatrice();
+    cout << "Enter text to be decrypted:\n";
+    fflush(stdin);
+    gets(ciphertext_vig);
+    strcpy(plaintext_vig, ciphertext_vig);
+    char decrypt[50];
+
+    cout << "Enter key:\n";
+    fflush(stdin);
+    gets(key);
+    char tempkey[30];
+    strcpy(tempkey, key);
+
+    cout << "\nThe decrypted message is: ";
+    int i, o = 0;
+
+    //loop to make all alphabets in input to upper case for ease of encryption
+    for (i = 0; i < strlen(ciphertext_vig); i++)
+        ciphertext_vig[i] = toupper(ciphertext_vig[i]);
+
+    //loop to convert all characters in key to upper case and validate that the key has only alphabets
+    for (i = 0; i < strlen(key); i++)
+    {
+        key[i] = toupper(key[i]);
+        if (key[i] < 'A' || key[i] > 'Z')
+            continue;
+        tempkey[o++] = key[i];
+    }
+    tempkey[o] = '\0';
+    strcpy(key, tempkey);
+
+    int l = strlen(key);
+    for (i = 0; i < strlen(ciphertext_vig); i++)
+    {
+        if (ciphertext_vig[i] >= 'A' && ciphertext_vig[i] <= 'Z')
+        {
+            int row= key[i%l]-65;
+            int col;
+            for (int k=0; k<27; k++)
+            {
+                if(cipher[row][k]== ciphertext_vig[i])
+                {
+                    col=65+k;
+                    break;
+                }
+            }
+            decrypt[i]= (char)col;
+        }
+        cout << decrypt[i];
+    }
+    cout<<"\n";
+}
+//end of vig
 
 void menu()
 {
