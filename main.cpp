@@ -472,7 +472,9 @@ class vig
 public:
     void vigprocess();
     void vigmatrice();
+     void decrypt_vig();
     void display_vig();
+   
 } v;
 
 //fn to create the vigenere alphabet matrix
@@ -542,6 +544,22 @@ void vig::vigprocess()
     cin >> ch;
     display_vig();
 }
+
+void vig::decrypt_vig()
+{
+    string output;
+      for (int i = 0, j = 0; i < t.length(); ++i) {
+         char c = t[i];
+         if (c >= 'a' && c <= 'z')
+            c += 'A' - 'a';
+         else if (c < 'A' || c > 'Z')
+            continue;
+         output += (c - k[j] + 26) % 26 + 'A';//added 'A' to bring it in range of ASCII alphabet [ 65-90 | A-Z ]
+         j = (j + 1) % k.length();
+      }
+      std::cout << output << "\n";
+   }
+
 
 void vig::display_vig()
 {
@@ -630,3 +648,4 @@ int main()
 {
     menu();
 }
+
