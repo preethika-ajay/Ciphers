@@ -502,6 +502,7 @@ class vig
 public:
     void vigprocess();
     void vigmatrice();
+    void decrypt_vig();
     void display_vig();
 } v;
 
@@ -567,7 +568,56 @@ void vig::vigprocess()
         }
         cout << ciphertext_vig[i];
     }
-    cout << "\n\nEnter any key to know about the working of VIGNERE CIPHER";
+    cout << "\n\nEnter any key to know about the working of VIGNERE CIPHER  ";
+    char ch;
+    cin >> ch;
+    display_vig();
+}
+
+//fn that performs decryption acccording to the rules of vigenere cipher(to know working of cipher, refer to readme)
+void vig::decrypt_vig()
+{
+    int j;
+    vigmatrice();
+    cout << "Enter a encrypted message:\n";
+    fflush(stdin);
+    gets(ciphertext_vig);
+    strcpy(plaintext_vig, ciphertext_vig);
+
+    cout << "Enter key:\n";
+    fflush(stdin);
+    gets(key);
+    char tempkey[30];
+    strcpy(tempkey, key);
+
+    cout << "\nThe decrypted message is: ";
+    int i, o = 0;
+
+    //loop to make all alphabets in input to upper case for ease of encryption
+    for (i = 0; i < strlen(ciphertext_vig); i++)
+        ciphertext_vig[i] = toupper(ciphertext_vig[i]);
+
+    //loop to convert all characters in key to upper case and validate that the key has only alphabets
+    for (i = 0; i < strlen(key); i++)
+    {
+        key[i] = toupper(key[i]);
+        if (key[i] < 'A' || key[i] > 'Z')
+            continue;
+        tempkey[o++] = key[i];
+    }
+    tempkey[o] = '\0';
+    strcpy(key, tempkey);
+
+    int l = strlen(key), word_letter;
+    for (i = 0; i < strlen(ciphertext_vig); i++)
+    {
+        if (ciphertext_vig[i] >= 'A' && ciphertext_vig[i] <= 'Z')
+        {
+            ciphertext_vig[i] = ((plaintext_vig[i] - key[i % l] + 26) % 26) + 'A';
+        }
+        cout << ciphertext_vig[i];        
+    }
+    cout << "\n\nEnter any key to know about the working of VIGNERE CIPHER:  ";
     char ch;
     cin >> ch;
     display_vig();
@@ -629,10 +679,10 @@ void menu()
         case '4':
         {
             v.vigprocess();
-            cout << "Enter any key to continue\n";
+            cout << "Enter any key to continue decryption >> ";
             char c1a;
             cin >> c1a;
-            system("cls");
+            v.decrypt_vig();
         } //end of switch
         break;
         case '5':
