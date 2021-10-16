@@ -582,6 +582,10 @@ void vig::decrypt_vig()
     for (i = 0; i < strlen(key); i++)
     {
         key[i] = toupper(key[i]);
+        if (key[i]==' ')
+        {
+            tempkey[i]=' '; //Accounting for spaces in input
+        }
         if (key[i] < 'A' || key[i] > 'Z')
             continue;
         tempkey[o++] = key[i];
@@ -611,6 +615,8 @@ void vig::decrypt_vig()
             }
             decrypt[i]= (char)col;
         }
+        if (ciphertext_vig[i]==' ')
+            decrypt[i]= ' ';
         cout << decrypt[i];
     }
     cout<<"\n";
