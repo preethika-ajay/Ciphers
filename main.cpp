@@ -201,46 +201,6 @@ void ceaser::encrypt_ceaser()
     cin >> ch;
     display_ceaser();
 } //end of void encrypt_ceaser
-void ceaser:: decrypt_ceaser()
-{
-    cout << "Enter your encrypted message:" << endl;
-    fflush(stdin);
-    gets(word);
-    strcpy(input_copy, word);
-    cout << "Enter shift of each letter (a number) : " << endl;
-    cin >> key;
-    key = key % 26;
-    int i, j, l;
-    l = strlen(word);
-    cout << "\nThe  message is: ";
-    for (int i = 0; word[i] != '\0'; ++i)
-    {
-        char ch;
-        ch = word[i];
-        if (ch >= 'a' && ch <= 'z')
-        {
-            ch = ch - key;
-            if (ch > 'z')
-                ch = ch + 'z' - 'a' + 1;
-            word[i] = ch;
-        }
-        //encrypt for uppercase letter
-        else if (ch >= 'A' && ch <= 'Z')
-        {
-            ch = ch - key;
-            if (ch > 'Z')
-            {
-                ch = ch + 'Z' - 'A' + 1;
-            }
-            word[i] = ch;
-        }
-        cout << word[i];
-    }
-    cout << "\n\nEnter any key to know about the working of CEASER'S SHIFT: ";
-    char ch;
-    cin >> ch;
-    display_ceaser();
-} //end of void decrypt_ceaser
 
 //fn that contains information about the ceaser cipher
 void ceaser::display_ceaser()
@@ -261,6 +221,49 @@ void ceaser::display_ceaser()
     cout << "\n\n";
 } //end of void
 
+void ceaser::decrypt_ceaser()
+{
+    cout << "Enter your message:" << endl;
+    fflush(stdin);
+    gets(word);
+    strcpy(input_copy, word);
+    cout << "Enter shift of each letter (a number) : " << endl;
+    cin >> key;
+    /*key = key % 26;*/
+    int i, j, l;
+    l = strlen(word);
+    for (int i = 0; word[i] != '\0'; ++i)
+    {
+        char ch;
+        ch = word[i];
+        if (ch >= 'a' && ch <= 'z')
+        {
+            ch = ch - key;
+            if (ch <'a')
+                ch = ch + 'z' - 'a' + 1;
+            word[i] = ch;
+        }
+        //decrypt for uppercase letter
+        else if (ch >= 'A' && ch <= 'Z')
+        {
+            ch = ch - key;
+            if (ch < 'A')
+            {
+                ch = ch + 'Z' - 'A' + 1;
+            }
+            word[i] = ch;
+        }
+        cout << word[i];
+    }
+    cout << "\n\nEnter any key to know about the working of CEASER'S SHIFT: ";
+    char ch;
+    cin >> ch;
+    display_ceaser();
+
+}
+
+
+
 //ATBASH CIPHER
 class atbash
 {
@@ -270,6 +273,7 @@ class atbash
 public:
     void processatbash();
     void display_atbash();
+    void decrypt_atbash();
 } blue; //end of class at bash
 
 //fn that performs encryption acccording to the rules of atbash cipher(to know working of cipher, refer to readme)
@@ -303,6 +307,31 @@ void atbash::display_atbash()
     cout << "Plaintext:  " << plaintext_atbash << '\n';
     cout << "Ciphertext: " << ciphertext_atbash << "\n";
 } //end of void
+
+void atbash::decrypt_atbash()
+{
+    cout << "Enter your message:\n";
+    fflush(stdin);
+    gets(ciphertext_atbash);
+    int i;
+    cout << "\nThe decrypted message is: ";
+    for (i = 0; i < strlen(ciphertext_atbash); i++)
+    {
+        if ('a' <= ciphertext_atbash[i] && ciphertext_atbash[i] <= 'z')
+            plaintext_atbash[i] = 'a' + 'z' - ciphertext_atbash[i];
+        else if ('A' <= ciphertext_atbash[i] && ciphertext_atbash[i] <= 'Z')
+            plaintext_atbash[i] = 'a' + 'z' - ciphertext_atbash[i] - 32;
+        else
+            plaintext_atbash[i] = ciphertext_atbash[i];
+        cout << plaintext_atbash[i];
+    }
+    /*cout<<plaintext_atbash;*/
+    cout << "\n\nEnter any key to know about the working of the ATBASH CIPHER: ";
+    char ch;
+    cin >> ch;
+    
+    
+}
 
 //PLAYFAIR CIPHER - to know about working of cipher refer to readme
 class playfair
@@ -512,8 +541,8 @@ class vig
 
 public:
     void vigprocess();
-    void vigmatrice();
     void decrypt_vig();
+    void vigmatrice();
     void display_vig();
 } v;
 
@@ -584,6 +613,7 @@ void vig::vigprocess()
     cin >> ch;
     display_vig();
 }
+
 void vig::decrypt_vig()
 {
     vigmatrice();
@@ -638,6 +668,7 @@ void vig::decrypt_vig()
     }
     cout<<"\n";
 }
+
 void vig::display_vig()
 {
     system("cls");
@@ -647,7 +678,7 @@ void vig::display_vig()
 
 void menu()
 {
-    char choice;
+    char choice,choice2;
     
     int flag = 0;
     while (!flag)
@@ -655,9 +686,8 @@ void menu()
         cout << "\nHere are the various ways in which you can encrypt a message:\n"
                 "1. ENIGMA\n2. CAESER'S SHIFT\n3. ATBASH CIPHER\n"
                 "4. THE VIGENERE CIPHER\n5. PLAYFAIR CIPHER\n6. EXIT\n";
-        cout << "Enter 7. To decrypt message in VIGENERE CIPHER method\n";
-        cout << "Enter 8.To decrypt message in ceaser CIPHER method\n ";
         cout << "\nSelect the cipher you would like to work with\n";
+        fflush(stdout);
         cin >> choice;
         switch (choice)
         {
@@ -677,7 +707,16 @@ void menu()
         break;
         case '2':
         {
-            c1.encrypt_ceaser();
+            cout << "1.ENCRYPTION \n2.DECRYPTION \n";
+            cout<<"Select any one\n";
+            cin >> choice2;
+            switch(choice2)
+            {
+                case '1':c1.encrypt_ceaser();
+                        break;
+                case '2':c1.decrypt_ceaser();
+                        break;
+            }
             cout << "Enter any key to continue\n";
             char c1a;
             cin >> c1a;
@@ -686,7 +725,19 @@ void menu()
         break;
         case '3':
         {
-            blue.processatbash();
+            cout << "1.ENCRYPTION \n2.DECRYPTION \n";
+            cout<<"Select any one\n";
+            fflush(stdout);
+            cin >> choice2;
+            switch(choice2)
+            {
+                case '1':blue.processatbash();
+                        break;
+                case '2':blue.decrypt_atbash();
+                        break;
+            }
+            
+            
             cout << "Enter any key to continue\n";
             char c1a;
             cin >> c1a;
@@ -695,8 +746,18 @@ void menu()
         break;
         case '4':
         {
-            v.vigprocess();
-            cout << "Enter any key to continue\n";
+            cout << "1.ENCRYPTION \n2.DECRYPTION \n";
+            cout<<"Select any one\n";
+            cin >> choice2;
+            switch(choice2)
+            {
+                case '1':v.vigprocess();
+                        break;
+                case '2':v.decrypt_vig();
+                        break;
+            }
+            
+            cout << "\nEnter any key to continue\n";
             char c1a;
             cin >> c1a;
             system("cls");
@@ -717,14 +778,6 @@ void menu()
         case '6':
             flag++;
             break;
-        case '7':
-        {
-            v.decrypt_vig();
-        }
-        case '8':
-        {
-            c1.decrypt_ceaser();
-        }
         default:
             cout << "Invalid choice. Try again.";
         } //end of switch
