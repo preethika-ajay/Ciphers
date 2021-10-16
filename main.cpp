@@ -260,6 +260,7 @@ class atbash
 
 public:
     void processatbash();
+    void decrypt_atbash();
     void display_atbash();
 } blue; //end of class at bash
 
@@ -284,6 +285,27 @@ void atbash::processatbash()
     cin >> ch;
     display_atbash();
 } //end of process at bash
+
+void atbash::decrypt_atbash()
+{
+    cout << "Enter your encrypted message>> \n";
+    fflush(stdin);
+    gets(plaintext_atbash);
+    int i;
+    cout << "\nThe decrypted message is: ";
+    for (i = 0; i < strlen(plaintext_atbash); i++)
+    {
+        if ('a' <= plaintext_atbash[i] && plaintext_atbash[i] <= 'z')
+            ciphertext_atbash[i] = 'a' + 'z' - plaintext_atbash[i];
+        else
+            ciphertext_atbash[i] = plaintext_atbash[i];
+        cout << ciphertext_atbash[i];
+    }
+    cout << "\n\nEnter any key to know about the working of the ATBASH CIPHER: ";
+    char ch;
+    cin >> ch;
+    display_atbash();
+}
 
 //fn that prints the plaintext and ciphertext of atbash
 void atbash::display_atbash()
@@ -670,9 +692,10 @@ void menu()
         case '3':
         {
             blue.processatbash();
-            cout << "Enter any key to continue\n";
+            cout << "Enter any key to continue the decrption >> \n";
             char c1a;
             cin >> c1a;
+            blue.decrypt_atbash();
             system("cls");
         }
         break;
