@@ -156,6 +156,7 @@ class ceaser
     char input_copy[50]; //copy of plaintext for reference
 public:
     void encrypt_ceaser();
+    void decrypt_ceaser();
     void display_ceaser();
 } c1;
 
@@ -200,6 +201,46 @@ void ceaser::encrypt_ceaser()
     cin >> ch;
     display_ceaser();
 } //end of void encrypt_ceaser
+void ceaser:: decrypt_ceaser()
+{
+    cout << "Enter your encrypted message:" << endl;
+    fflush(stdin);
+    gets(word);
+    strcpy(input_copy, word);
+    cout << "Enter shift of each letter (a number) : " << endl;
+    cin >> key;
+    key = key % 26;
+    int i, j, l;
+    l = strlen(word);
+    cout << "\nThe  message is: ";
+    for (int i = 0; word[i] != '\0'; ++i)
+    {
+        char ch;
+        ch = word[i];
+        if (ch >= 'a' && ch <= 'z')
+        {
+            ch = ch - key;
+            if (ch > 'z')
+                ch = ch + 'z' - 'a' + 1;
+            word[i] = ch;
+        }
+        //encrypt for uppercase letter
+        else if (ch >= 'A' && ch <= 'Z')
+        {
+            ch = ch - key;
+            if (ch > 'Z')
+            {
+                ch = ch + 'Z' - 'A' + 1;
+            }
+            word[i] = ch;
+        }
+        cout << word[i];
+    }
+    cout << "\n\nEnter any key to know about the working of CEASER'S SHIFT: ";
+    char ch;
+    cin >> ch;
+    display_ceaser();
+} //end of void decrypt_ceaser
 
 //fn that contains information about the ceaser cipher
 void ceaser::display_ceaser()
@@ -472,6 +513,7 @@ class vig
 public:
     void vigprocess();
     void vigmatrice();
+    void decrypt_vig();
     void display_vig();
 } v;
 
@@ -542,7 +584,60 @@ void vig::vigprocess()
     cin >> ch;
     display_vig();
 }
+void vig::decrypt_vig()
+{
+    vigmatrice();
+    cout << "Enter text to be decrypted:\n";
+    fflush(stdin);
+    gets(ciphertext_vig);
+    strcpy(plaintext_vig, ciphertext_vig);
+    char decrypt[50];
 
+    cout << "Enter key:\n";
+    fflush(stdin);
+    gets(key);
+    char tempkey[30];
+    strcpy(tempkey, key);
+
+    cout << "\nThe decrypted message is: ";
+    int i, o = 0;
+
+    //loop to make all alphabets in input to upper case for ease of encryption
+    for (i = 0; i < strlen(ciphertext_vig); i++)
+        ciphertext_vig[i] = toupper(ciphertext_vig[i]);
+
+    //loop to convert all characters in key to upper case and validate that the key has only alphabets
+    for (i = 0; i < strlen(key); i++)
+    {
+        key[i] = toupper(key[i]);
+        if (key[i] < 'A' || key[i] > 'Z')
+            continue;
+        tempkey[o++] = key[i];
+    }
+    tempkey[o] = '\0';
+    strcpy(key, tempkey);
+
+    int l = strlen(key);
+    for (i = 0; i < strlen(ciphertext_vig); i++)
+    {
+        if (ciphertext_vig[i] >= 'A' && ciphertext_vig[i] <= 'Z')
+        {
+            int row= key[i%l]-65;
+            int col;
+            for (int k=0; k<27; k++)
+            {
+                if(cipher[row][k]== ciphertext_vig[i])
+                {
+                    col=65+k;
+                    break;
+                }
+            }
+            decrypt[i]= (char)col;
+        }
+        cout << decrypt[i];
+    }
+    cout<<"\n";
+}
 void vig::display_vig()
 {
     system("cls");
@@ -560,6 +655,8 @@ void menu()
         cout << "\nHere are the various ways in which you can encrypt a message:\n"
                 "1. ENIGMA\n2. CAESER'S SHIFT\n3. ATBASH CIPHER\n"
                 "4. THE VIGENERE CIPHER\n5. PLAYFAIR CIPHER\n6. EXIT\n";
+        cout << "Enter 7. To decrypt message in VIGENERE CIPHER method\n";
+        cout << "Enter 8.To decrypt message in ceaser CIPHER method\n ";
         cout << "\nSelect the cipher you would like to work with\n";
         cin >> choice;
         switch (choice)
@@ -620,6 +717,14 @@ void menu()
         case '6':
             flag++;
             break;
+        case '7':
+        {
+            v.decrypt_vig();
+        }
+        case '8':
+        {
+            c1.decrypt_ceaser();
+        }
         default:
             cout << "Invalid choice. Try again.";
         } //end of switch
