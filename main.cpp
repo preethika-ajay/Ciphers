@@ -515,6 +515,7 @@ class vig
 
 public:
     void vigprocess();
+    void decrypt_vig();
     void vigmatrice();
     void display_vig();
 } v;
@@ -587,6 +588,61 @@ void vig::vigprocess()
     display_vig();
 }
 
+void vig::decrypt_vig()
+{
+    vigmatrice();
+    cout << "Enter text to be decrypted:\n";
+    fflush(stdin);
+    gets(ciphertext_vig);
+    strcpy(plaintext_vig, ciphertext_vig);
+    char decrypt[50];
+
+    cout << "Enter key:\n";
+    fflush(stdin);
+    gets(key);
+    char tempkey[30];
+    strcpy(tempkey, key);
+
+    cout << "\nThe decrypted message is: ";
+    int i, o = 0;
+
+    //loop to make all alphabets in input to upper case for ease of encryption
+    for (i = 0; i < strlen(ciphertext_vig); i++)
+        ciphertext_vig[i] = toupper(ciphertext_vig[i]);
+
+    //loop to convert all characters in key to upper case and validate that the key has only alphabets
+    for (i = 0; i < strlen(key); i++)
+    {
+        key[i] = toupper(key[i]);
+        if (key[i] < 'A' || key[i] > 'Z')
+            continue;
+        tempkey[o++] = key[i];
+    }
+    tempkey[o] = '\0';
+    strcpy(key, tempkey);
+
+    int l = strlen(key);
+    for (i = 0; i < strlen(ciphertext_vig); i++)
+    {
+        if (ciphertext_vig[i] >= 'A' && ciphertext_vig[i] <= 'Z')
+        {
+            int row= key[i%l]-65;
+            int col;
+            for (int k=0; k<27; k++)
+            {
+                if(cipher[row][k]== ciphertext_vig[i])
+                {
+                    col=65+k;
+                    break;
+                }
+            }
+            decrypt[i]= (char)col;
+        }
+        cout << decrypt[i];
+    }
+    cout<<"\n";
+}
+
 void vig::display_vig()
 {
     system("cls");
@@ -626,7 +682,7 @@ void menu()
         case '2':
         {
             cout << "1.ENCRYPTION \n2.DECRYPTION \n";
-            cout<< "Select any one\n";
+            cout<<"Select any one\n";
             cin >> choice2;
             switch(choice2)
             {
@@ -652,8 +708,18 @@ void menu()
         break;
         case '4':
         {
-            v.vigprocess();
-            cout << "Enter any key to continue\n";
+            cout << "1.ENCRYPTION \n2.DECRYPTION \n";
+            cout<<"Select any one\n";
+            cin >> choice2;
+            switch(choice2)
+            {
+                case '1':v.vigprocess();
+                        break;
+                case '2':v.decrypt_vig();
+                        break;
+            }
+            
+            cout << "\nEnter any key to continue\n";
             char c1a;
             cin >> c1a;
             system("cls");
