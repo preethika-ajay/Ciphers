@@ -156,6 +156,7 @@ class ceaser
     char input_copy[50]; //copy of plaintext for reference
 public:
     void encrypt_ceaser();
+    void decrypt_ceaser();
     void display_ceaser();
 } c1;
 
@@ -200,6 +201,46 @@ void ceaser::encrypt_ceaser()
     cin >> ch;
     display_ceaser();
 } //end of void encrypt_ceaser
+void ceaser:: decrypt_ceaser()
+{
+    cout << "Enter your encrypted message:" << endl;
+    fflush(stdin);
+    gets(word);
+    strcpy(input_copy, word);
+    cout << "Enter shift of each letter (a number) : " << endl;
+    cin >> key;
+    key = key % 26;
+    int i, j, l;
+    l = strlen(word);
+    cout << "\nThe  message is: ";
+    for (int i = 0; word[i] != '\0'; ++i)
+    {
+        char ch;
+        ch = word[i];
+        if (ch >= 'a' && ch <= 'z')
+        {
+            ch = ch - key;
+            if (ch > 'z')
+                ch = ch + 'z' - 'a' + 1;
+            word[i] = ch;
+        }
+        //encrypt for uppercase letter
+        else if (ch >= 'A' && ch <= 'Z')
+        {
+            ch = ch - key;
+            if (ch > 'Z')
+            {
+                ch = ch + 'Z' - 'A' + 1;
+            }
+            word[i] = ch;
+        }
+        cout << word[i];
+    }
+    cout << "\n\nEnter any key to know about the working of CEASER'S SHIFT: ";
+    char ch;
+    cin >> ch;
+    display_ceaser();
+} //end of void decrypt_ceaser
 
 //fn that contains information about the ceaser cipher
 void ceaser::display_ceaser()
@@ -615,6 +656,7 @@ void menu()
                 "1. ENIGMA\n2. CAESER'S SHIFT\n3. ATBASH CIPHER\n"
                 "4. THE VIGENERE CIPHER\n5. PLAYFAIR CIPHER\n6. EXIT\n";
         cout << "Enter 7. To decrypt message in VIGENERE CIPHER method\n";
+        cout << "Enter 8.To decrypt message in ceaser CIPHER method\n ";
         cout << "\nSelect the cipher you would like to work with\n";
         cin >> choice;
         switch (choice)
@@ -678,6 +720,10 @@ void menu()
         case '7':
         {
             v.decrypt_vig();
+        }
+        case '8':
+        {
+            c1.decrypt_ceaser();
         }
         default:
             cout << "Invalid choice. Try again.";
