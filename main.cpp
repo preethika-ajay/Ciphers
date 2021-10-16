@@ -148,6 +148,16 @@ void enigma::enigma_display()
     cout << "Ciphertext: " << ciphertext_enigma << "\n";
 } //end of void
 
+bool isNumber(int s)
+{
+    string str = to_string();
+    for (int i = 0; s < str.length(); i++)
+        if (isdigit(str[s]) == false)
+            return false;
+
+    return true;
+}
+
 //CEASER CIPHER
 class ceaser
 {
@@ -167,38 +177,43 @@ void ceaser::encrypt_ceaser()
     gets(word);
     strcpy(input_copy, word);
     cout << "Enter shift of each letter (a number) : " << endl;
-    cin >> key;
-    key = key % 26;
-    int i, j, l;
-    l = strlen(word);
-    cout << "\nThe encrypted message is: ";
-    for (int i = 0; word[i] != '\0'; ++i)
+    if (isNumber(str))
+        cout << "You have entered a non integer!";
+    else
     {
-        char ch;
-        ch = word[i];
-        if (ch >= 'a' && ch <= 'z')
+        cin >> key;
+        key = key % 26;
+        int i, j, l;
+        l = strlen(word);
+        cout << "\nThe encrypted message is: ";
+        for (int i = 0; word[i] != '\0'; ++i)
         {
-            ch = ch + key;
-            if (ch > 'z')
-                ch = ch - 'z' + 'a' - 1;
-            word[i] = ch;
-        }
-        //encrypt for uppercase letter
-        else if (ch >= 'A' && ch <= 'Z')
-        {
-            ch = ch + key;
-            if (ch > 'Z')
+            char ch;
+            ch = word[i];
+            if (ch >= 'a' && ch <= 'z')
             {
-                ch = ch - 'Z' + 'A' - 1;
+                ch = ch + key;
+                if (ch > 'z')
+                    ch = ch - 'z' + 'a' - 1;
+                word[i] = ch;
             }
-            word[i] = ch;
+            //encrypt for uppercase letter
+            else if (ch >= 'A' && ch <= 'Z')
+            {
+                ch = ch + key;
+                if (ch > 'Z')
+                {
+                    ch = ch - 'Z' + 'A' - 1;
+                }
+                word[i] = ch;
+            }
+            cout << word[i];
         }
-        cout << word[i];
+        cout << "\n\nEnter any key to know about the working of CEASER'S SHIFT: ";
+        char ch;
+        cin >> ch;
+        display_ceaser();
     }
-    cout << "\n\nEnter any key to know about the working of CEASER'S SHIFT: ";
-    char ch;
-    cin >> ch;
-    display_ceaser();
 } //end of void encrypt_ceaser
 
 //fn that contains information about the ceaser cipher
@@ -207,7 +222,7 @@ void ceaser::display_ceaser()
     system("cls");
     cout << "Plaintext  : " << input_copy << '\n';
     cout << "Ciphertext : " << word << "\n\n";
-    cout<<"\nShift of the alphabet: \n";
+    cout << "\nShift of the alphabet: \n";
     int i;
     for (i = 0; i < 26; i++)
     {
@@ -243,8 +258,6 @@ void atbash::processatbash()
     {
         if ('a' <= plaintext_atbash[i] && plaintext_atbash[i] <= 'z')
             ciphertext_atbash[i] = 'a' + 'z' - plaintext_atbash[i];
-        else if ('A' <= plaintext_atbash[i] && plaintext_atbash[i] <= 'Z')
-            ciphertext_atbash[i] = 'a' + 'z' - plaintext_atbash[i] - 32;
         else
             ciphertext_atbash[i] = plaintext_atbash[i];
         cout << ciphertext_atbash[i];
@@ -266,10 +279,10 @@ void atbash::display_atbash()
 //PLAYFAIR CIPHER - to know about working of cipher refer to readme
 class playfair
 {
-    char grid[5][5];//playfair cipher's 5X5 grid 
-    char key[200];//to contain the key in the required format for encryption
+    char grid[5][5]; //playfair cipher's 5X5 grid
+    char key[200];   //to contain the key in the required format for encryption
     char inp_key[200];
-    char plaintext_playfair[200];//plain text as inputted by user
+    char plaintext_playfair[200]; //plain text as inputted by user
     char ciphertext_playfair[200];
     void generate_key();
     void generate_grid();
@@ -361,7 +374,7 @@ void playfair ::generate_grid()
     {
         int j, repeat = 0;
         for (j = 0; j < strlen(key); j++)
-            if (alpha2[k] == key[j])//alpha2 is the alphabet in lower case - preprocessor declared at the head of the program
+            if (alpha2[k] == key[j]) //alpha2 is the alphabet in lower case - preprocessor declared at the head of the program
                 repeat++;
         if (repeat || alpha2[k] == 'j')
         {
@@ -411,21 +424,21 @@ void playfair ::processplay()
 
         //Case 1 : Same row
         if (ai == bi)
-        { 
+        {
             ciphertext_playfair[i] = grid[ai][(aj + 1) % 5];
             ciphertext_playfair[i + 1] = grid[bi][(bj + 1) % 5];
         }
 
         //Case 2 : Same column
         else if (aj == bj)
-        { 
+        {
             ciphertext_playfair[i] = grid[(ai + 1) % 5][aj];
             ciphertext_playfair[i + 1] = grid[(bi + 1) % 5][bj];
         }
 
         //Case 3 : rectangle
         else
-        { 
+        {
             ciphertext_playfair[i] = grid[ai][bj];
             ciphertext_playfair[i + 1] = grid[bi][aj];
         }
@@ -449,7 +462,7 @@ void playfair::display_playfair()
     system("cls");
     cout << "Plaintext:  " << plaintext_playfair << '\n';
     cout << "Ciphertext: " << ciphertext_playfair << "\n\n";
-    
+
     cout << "      Grid: \n       ";
     int i;
     for (i = 0; i < 5; i++)
@@ -466,7 +479,7 @@ class vig
 {
     char ciphertext_vig[50];
     char key[25];
-    char cipher[27][27];//to store the vigenere alphabet matrix
+    char cipher[27][27]; //to store the vigenere alphabet matrix
     char plaintext_vig[50];
 
 public:
@@ -553,7 +566,7 @@ void vig::display_vig()
 void menu()
 {
     char choice;
-    
+
     int flag = 0;
     while (!flag)
     {
