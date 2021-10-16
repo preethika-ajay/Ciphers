@@ -666,7 +666,7 @@ void menu()
                 }
                 break;
                 default:
-                cout << "Invalid choice. Try again.";
+                    cout << "Invalid choice. Try again.";
             }
         }
         break;
