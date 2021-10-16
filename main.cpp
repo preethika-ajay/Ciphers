@@ -156,7 +156,9 @@ class ceaser
     char input_copy[50]; //copy of plaintext for reference
 public:
     void encrypt_ceaser();
+    void decrypt_ceaser();
     void display_ceaser();
+    void display_decrypt_ceaser();
 } c1;
 
 //fn that performs encryption acccording to the rules of ceaser cipher(to know working of cipher, refer to readme)
@@ -201,6 +203,48 @@ void ceaser::encrypt_ceaser()
     display_ceaser();
 } //end of void encrypt_ceaser
 
+//fn that performs decryption according to rules of ceaser cipher.
+void ceaser::decrypt_ceaser()
+{
+     cout << "Enter the encrypted message:" << endl;
+    fflush(stdin);
+    gets(word);
+    strcpy(input_copy, word);
+    cout << "Enter shift of each letter (a number) : " << endl;
+    cin >> key;
+    key = key % 26;
+    int i, j, l;
+    l = strlen(word);
+    cout << "\nThe decrypted message is: ";
+    for (int i = 0; word[i] != '\0'; ++i)
+    {
+        char ch;
+        ch = word[i];
+        if (ch >= 'a' && ch <= 'z')
+        {
+            ch = ch - key;
+            if (ch < 'a')
+                ch = ch + 'z' - 'a' + 1;
+            word[i] = ch;
+        }
+        //encrypt for uppercase letter
+        else if (ch >= 'A' && ch <= 'Z')
+        {
+            ch = ch - key;
+            if (ch < 'A')
+            {
+                ch = ch + 'Z' - 'A' + 1;
+            }
+            word[i] = ch;
+        }
+        cout << word[i];
+    }
+    cout << "\n\nEnter any key to know about the working of CEASER'S SHIFT: ";
+    char ch;
+    cin >> ch;
+    display_decrypt_ceaser();
+}//end of void decrypt_ceaser
+
 //fn that contains information about the ceaser cipher
 void ceaser::display_ceaser()
 {
@@ -219,6 +263,24 @@ void ceaser::display_ceaser()
     }
     cout << "\n\n";
 } //end of void
+
+void ceaser::display_decrypt_ceaser()
+{
+    system("cls");
+    cout << "Plaintext  : " << input_copy << '\n';
+    cout << "Decrypted text : " << word << "\n\n";
+    cout<<"\nReversing the shift of the alphabet: \n";
+    int i;
+    for (i = 0; i < 26; i++)
+    {
+        char ch = alpha[i];
+        ch = ch - key;
+        if (ch < 'A')
+            ch = ch + 'Z' - 'A' + 1;
+        cout << ch;
+    }
+    cout << "\n\n";
+}//end of void diaplay_decrypt_ceaser
 
 //ATBASH CIPHER
 class atbash
@@ -577,12 +639,35 @@ void menu()
         }
         break;
         case '2':
-        {
-            c1.encrypt_ceaser();
-            cout << "Enter any key to continue\n";
-            char c1a;
-            cin >> c1a;
-            system("cls");
+        {   
+            char choice1;
+            cout << "\nHere are the functions you can perform with the chosen encryption method:\n"
+                "1. ENCRYPT\n2. DECRYPT\n";
+            cout << "\nSelect the function you would like to perform\n";
+            cin >> choice1;
+            switch (choice1)
+            {
+                case '1':
+                {   
+                    c1.encrypt_ceaser();
+                    cout << "Enter any key to continue\n";
+                    char c1a;
+                    cin >> c1a;
+                    system("cls");
+                }
+                break;
+                case '2':
+                {
+                    c1.decrypt_ceaser();
+                    cout << "Enter any key to continue\n";
+                    char c1a;
+                    cin >> c1a;
+                    system("cls");
+                }
+                break;
+                default:
+                cout << "Invalid choice. Try again.";
+            }
         }
         break;
         case '3':
