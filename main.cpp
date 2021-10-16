@@ -718,11 +718,6 @@ void menu()
         break;
         case '3':
         {
-            blue.processatbash();
-            cout << "Enter any key to continue\n";
-            char c1a;
-            cin >> c1a;
-            system("cls");
             char choice1;
             cout << "\nHere are the functions you can perform with the chosen encryption method:\n"
                 "1. ENCRYPT\n2. DECRYPT\n";
