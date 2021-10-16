@@ -89,9 +89,27 @@ public:
     void enigma_display();
 };
 
+string printRandomString(int n)
+{
+    string res = "";
+    for (int i = 0; i < n; i++)
+        res = res + alpha[rand() % 26];
+
+    return res;
+}
+
 //fn to initialize the left walls of the rotor and reflector - alphabet array obtained from file secretkey.txt
 void enigma ::init()
 {
+    srand(time(NULL));
+    int n = 26;
+    std::ofstream outfile;
+
+    outfile.open("secretkey.txt", ios::out | ios::trunc); // append instead of overwrite
+    outfile << printRandomString(n) << endl;
+    outfile << printRandomString(n) << endl;
+    outfile << printRandomString(n) << endl;
+
     fstream fin("secretkey.txt", ios::in);
     char temp[27];
     fin.getline(temp, 27, '\n');
