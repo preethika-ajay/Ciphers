@@ -549,8 +549,11 @@ void vig::display_vig()
     system("cls");
     cout << "Plaintext: " << plaintext_vig;
     cout << "\nCiphertext:" << ciphertext_vig << endl;
-    cout << "\nDo you wish to decrypt text? "<<endl;
-    decrypt_vig();
+    cout << "\nDo you wish to decrypt text? (Press 1 for yes)"<<endl;
+    char ch;
+    cin >> ch;
+    if (ch=='1')
+        decrypt_vig();
 } 
 
 void vig::decrypt_vig()
@@ -583,8 +586,13 @@ void vig::decrypt_vig()
             continue;
         tempkey[o++] = key[i];
     }
+
+    try
+    {
     tempkey[o] = '\0';
     strcpy(key, tempkey);
+    if (tempkey[0]=='\0')
+        throw 0;
 
     int l = strlen(key);
     for (i = 0; i < strlen(ciphertext_vig); i++)
@@ -606,6 +614,11 @@ void vig::decrypt_vig()
         cout << decrypt[i];
     }
     cout<<"\n";
+    }
+    catch(...)
+    {
+        cout<<"Invalid key"<<endl;
+    }
 }
 //end of vig
 
